@@ -1,0 +1,49 @@
+{% extends 'bases/base.html' %}
+{% block content %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Articulo</title>
+        <link rel="stylesheet" href="">
+    </head>
+    <style type="text/css">
+    	.sec{
+    		width: 100%;
+    		background-color: aquamarine;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+			gap: 1rem;
+			}
+
+		.article{
+			text-align: center;
+			border: 1px solid;
+			max-width: 280px;
+			min-width: 100px;
+			margin-inline: 20px;
+
+			}
+
+		.img-product{
+			width: 5rem;
+			height: 5rem;
+		}
+    </style>
+    <body>
+    	<section class="sec">
+    		{% for art in item %}
+			<div class="article">
+				<h3>Codigo:<a href="/Articulo/Detalle/{{art.codigo}}">Ir a prodcuto</a></h3> 
+				<h1>Nombre: {{ art.nombre }}</h1>
+				<img class="img-product" src={{art.img}}>
+			</div>
+			{% endfor %}
+
+</section>
+        
+    </body>
+</html>
+{% endblock %}

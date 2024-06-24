@@ -1,0 +1,11 @@
+{% extends 'bases/base.html' %}
+{% block content %}
+<div>
+	<h4>id: {{ item.codigo }}</h4>
+	<img src={{item.img}}>
+	<h2>Nombre: {{item.nombre}}</h2>
+	<textarea>
+		{{ item.descripcion }}
+	</textarea>
+</div>
+{% endblock %}
