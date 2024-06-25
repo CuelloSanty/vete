@@ -1,0 +1,93 @@
+
+{% extends "bases/base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Producto</title>
+</head>
+<body>
+    <style type="text/css">
+        .main{
+            
+        }
+    </style>
+    <form method="POST" class="main">
+        {% csrf_token %}
+        <label for="codigo">Código:</label>
+        <input type="number" name="codigo" id="codigo" required><br>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" maxlength="30" id="nombre" required><br>
+
+        <label for="descripcion">Descripción:</label>
+        <input type="text" name="descripcion" maxlength="150" id="descripcion"><br>
+
+        <label for="img">Imagen (URL):</label>
+        <input type="url" name="img" id="img"><br>
+
+        <label for="marca">Marca:</label>
+        <input type="text" name="marca" maxlength="30" required id="marca"><br>
+
+        <label for="proveedor">Proveedor</label>
+        <select name="proveedor" id="proveedor">
+            {% for x in tom %}
+            <option value={{x.cuit}} type="number" id="proveedor">{{x.nombre}}</option>
+            {% endfor %}
+        </select><br>
+        
+
+
+        <!-- Campos opcionales -->
+        <label for="peso">Peso:</label>
+        <input type="number" step="0.001" name="peso" id="peso"><br>
+
+        <label for="talle">Talle:</label>
+        <input type="number" step="0.1" name="talle" id="talle"><br>
+
+        <label for="vencimiento">Fecha de vencimiento:</label>
+        <input  name="vencimiento" id="vencimiento" ><br>
+
+        <label for="unidad">Unidad de medida:</label>
+        <select name="unidad" id="unidad">
+            <option value="KILOS">Kilos</option>
+            <option value="Bolsa">Bolsa</option>
+            <option value="Caja">Caja</option>
+            <option value="Sobre">Sobre</option>
+            <option value="Comprimido">Comprimido</option>
+            <option value="Unidad">Unidad</option>
+            <option value="Gramos">Gramos</option>
+            <option value="Mililitros">Mililitros</option>
+            <option value="Litros">Litros</option>
+            <option value="Otro">Otro</option>
+            <!-- Agrega otras opciones aquí -->
+        </select><br>
+        <!-- <input type="text" name="text" id="unidad" value=""> -->
+
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" step="0.01" name="cantidad" required id="cantidad"><br>
+
+        <label for="precio">Precio:</label>
+        <input type="number" step="0.01" name="precio" required id="precio"><br>
+
+        <!-- Proveedor (debes manejar esto en tu vista) -->
+        <!-- Stock mínimo (debes manejar esto en tu vista) -->
+
+        <label for="tipo">Tipo:</label>
+        <select name="tipo" id="tipo">
+            <option value="Alimento">Alimento</option>
+            <option value="Accesorio">Accesorio</option>
+            <option value="Medicamento">Medicamento</option>
+
+            <!-- Agrega otras opciones aquí -->
+        </select><br>
+
+        <input type="submit" value="Guardar">
+    </form>
+</body>
+</html>
+{% endblock %}
+

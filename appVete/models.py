@@ -15,12 +15,6 @@ class Proveedore(models.Model):
 
 class Articulo(models.Model):
 
-    codigo = models.IntegerField(primary_key=True)
-    nombre = models.CharField(max_length=30)
-    descripcion = models.CharField(max_length=150,blank=True, null=True)
-    img = models.URLField(max_length=655, blank=True, null=True)
-    marca = models.CharField(max_length=30)
-
     MEDICAMENTO = 'Med'
     ALIMENTO = 'Alim'
     ACCESORIO = 'Acc'
@@ -30,7 +24,6 @@ class Articulo(models.Model):
         ('Alim', 'Alimento'),
         ('Acc', 'Accesorio'),
     ]
-    tipo = models.CharField(max_length=5, choices=tipo, default=MEDICAMENTO)
 
     BOLSA = 'Bol'
     CAJA = 'Caj'
@@ -54,6 +47,20 @@ class Articulo(models.Model):
         ('Lit', 'Litros'),
         ('Otro', 'Otro')
     ]
+
+
+    # Campo [Open]
+    codigo = models.IntegerField(primary_key=True)
+    nombre = models.CharField(max_length=30)
+    descripcion = models.CharField(max_length=150,blank=True, null=True)
+    img = models.URLField(max_length=655, blank=True, null=True)
+    marca = models.CharField(max_length=30)
+    
+    # No Obligatorio
+    peso = models.DecimalField(max_digits=5, decimal_places=3,blank=True, default=None,null=True)
+    talle = models.DecimalField(max_digits=2,decimal_places=1,default=None,blank=True,null=True)
+    vencimiento = models.DateField(default=None, blank=True,null=True)
+    
     unidad = models.CharField(max_length=5, choices=medidas, default=KILOS)
 
     cantidad = models.DecimalField(max_digits=10, decimal_places=2)
@@ -61,12 +68,10 @@ class Articulo(models.Model):
 
     proveedor = models.ForeignKey('Proveedore', on_delete=models.CASCADE)
     stock_minimo = models.IntegerField(blank=True, null=True)
-
-    # No Obligatorio
-    peso = models.DecimalField(max_digits=5, decimal_places=3,blank=True, default=None,null=True)
-    talle = models.DecimalField(max_digits=2,decimal_places=1,default=None,blank=True,null=True)
-    vencimiento = models.DateField(default=None, blank=True,null=True)
-
+    
+    # Campo
+    tipo = models.CharField(max_length=5, choices=tipo, default=MEDICAMENTO)
+    # campo [end]
 
     def __str__(self):
         return self.nombre

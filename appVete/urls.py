@@ -20,7 +20,8 @@ from . import views
 urlpatterns = [
     path('', views.index, name='Index'),
     path('Articulo/', views.article, name='Article'),
-    path('Articulo/Detalle/<int:pk>', views.art_detail, name="Detail")
+    path('Articulo/Detalle/<int:pk>', views.art_detail, name="Detail"),
+    path('Articulo/form/',views.form, name='form')  
 
 ]
 
